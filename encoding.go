@@ -6,6 +6,7 @@ import (
 	"github.com/go-zoox/encoding/yaml"
 )
 
+// Encoding is an interface for encoding/decoding.
 type Encoding interface {
 	// Encode returns the X encoding of the data.
 	Encode([]byte) []byte
@@ -13,6 +14,11 @@ type Encoding interface {
 	Decode([]byte) ([]byte, error)
 }
 
+// Json exports from encoding/json
 var Json json.JSON
+
+// Yaml exports from encoding/yaml
 var Yaml yaml.YAML
+
+// Toml exports from encoding/toml
 var Toml toml.TOML
