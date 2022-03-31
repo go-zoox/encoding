@@ -1,4 +1,4 @@
-# Encoding - JSON/YAML/TOML
+# Encoding - Unmashal/Marsha of JSON/YAML/TOML 
 
 [![PkgGoDev](https://pkg.go.dev/badge/github.com/go-zoox/encoding)](https://pkg.go.dev/github.com/go-zoox/encoding)
 [![Build Status](https://github.com/go-zoox/encoding/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/go-zoox/encoding/actions/workflows/ci.yml)
