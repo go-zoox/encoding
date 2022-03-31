@@ -39,8 +39,7 @@ func TestEncoding(t *testing.T) {
 }
 ```
 
-## Depencencies
-* [gjson](github.com/tidwall/gjson) - Get JSON Whenever You Need, you don't define type first。
+## Inspired by
 
 ## License
 GoZoox is released under the [MIT License](./LICENSE).
