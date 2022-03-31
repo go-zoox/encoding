@@ -25,7 +25,4 @@ func TestEncoding(t *testing.T) {
 	if !reflect.DeepEqual(obj, decoded) {
 		t.Errorf("expected %v, got %v", obj, decoded)
 	}
-
-	// fmt.Println("obj:", obj)
-	// fmt.Println("decoded:", decoded)
 }

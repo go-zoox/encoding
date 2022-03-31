@@ -1,26 +1,42 @@
-# Fetch - HTTP Client
+# Encoding - JSON/YAML/TOML
 
-[![PkgGoDev](https://pkg.go.dev/badge/github.com/go-zoox/fetch)](https://pkg.go.dev/github.com/go-zoox/fetch)
-[![Build Status](https://github.com/go-zoox/fetch/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/go-zoox/fetch/actions/workflows/ci.yml)
-[![Go Report Card](https://goreportcard.com/badge/github.com/go-zoox/fetch)](https://goreportcard.com/report/github.com/go-zoox/fetch)
-[![Coverage Status](https://coveralls.io/repos/github/go-zoox/fetch/badge.svg?branch=master)](https://coveralls.io/github/go-zoox/fetch?branch=master)
-[![GitHub issues](https://img.shields.io/github/issues/go-zoox/fetch.svg)](https://github.com/go-zoox/fetch/issues)
-[![Release](https://img.shields.io/github/tag/go-zoox/fetch.svg?label=Release)](https://github.com/go-zoox/fetch/releases)
+[![PkgGoDev](https://pkg.go.dev/badge/github.com/go-zoox/encoding)](https://pkg.go.dev/github.com/go-zoox/encoding)
+[![Build Status](https://github.com/go-zoox/encoding/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/go-zoox/encoding/actions/workflows/ci.yml)
+[![Go Report Card](https://goreportcard.com/badge/github.com/go-zoox/encoding)](https://goreportcard.com/report/github.com/go-zoox/encoding)
+[![Coverage Status](https://coveralls.io/repos/github/go-zoox/encoding/badge.svg?branch=master)](https://coveralls.io/github/go-zoox/encoding?branch=master)
+[![GitHub issues](https://img.shields.io/github/issues/go-zoox/encoding.svg)](https://github.com/go-zoox/encoding/issues)
+[![Release](https://img.shields.io/github/tag/go-zoox/encoding.svg?label=Release)](https://github.com/go-zoox/encoding/releases)
 
 ## Installation
 To install the package, run:
 ```bash
-go get github.com/go-zoox/fetch
+go get github.com/go-zoox/encoding
 ```
 
 ## Getting Started
 
 ```go
-response, _ := fetch.Get("https://httpbin.zcorky.com/get")
-url := response.Get("url")
-method := response.Get("method")
+func TestEncoding(t *testing.T) {
+	obj := map[string]interface{}{
+		"foo": "bar",
+		"baz": "qux",
+	}
 
-fmt.Println(url, method)
+	encoded, err := Json.Encode(obj)
+	if err != nil {
+		t.Errorf("error encoding: %s", err)
+	}
+
+	decoded := map[string]interface{}{}
+	err = Json.Decode(encoded, &decoded)
+	if err != nil {
+		t.Errorf("error decoding: %s", err)
+	}
+
+	if !reflect.DeepEqual(obj, decoded) {
+		t.Errorf("expected %v, got %v", obj, decoded)
+	}
+}
 ```
 
 ## Depencencies
