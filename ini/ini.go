@@ -1,4 +1,4 @@
-package json
+package ini
 
 import (
 	goini "github.com/go-zoox/ini"
