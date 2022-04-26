@@ -1,6 +1,6 @@
 module github.com/go-zoox/encoding
 
-go 1.17
+go 1.18
 
 require (
 	github.com/go-zoox/ini v1.0.4
