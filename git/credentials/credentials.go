@@ -2,7 +2,6 @@ package credentials
 
 import (
 	"fmt"
-	"net/url"
 	"sort"
 	"strings"
 
@@ -13,8 +12,6 @@ type Credentials interface {
 	Encode(v map[string]*Item) ([]byte, error)
 	Decode(raw []byte) (map[string]*Item, error)
 }
-
-type Item = url.URL
 
 type credentials struct {
 }
@@ -31,7 +28,7 @@ func (c credentials) Encode(v map[string]*Item) ([]byte, error) {
 		return strings.Compare(items[i].Host, items[j].Host) > -1
 	})
 
-	for _, one := range v {
+	for _, one := range items {
 		// @TODO git credentials store encode escape characters not standard
 		// https://en.wikipedia.org/wiki/URL_encoding
 		lines = append(lines, one.String())
@@ -57,12 +54,12 @@ func (c credentials) Decode(raw []byte) (map[string]*Item, error) {
 			continue
 		}
 
-		item, err := url.Parse(one)
+		item, err := ParseItem(one)
 		if err != nil {
 			return nil, fmt.Errorf("invalid credentials(%s): %v", one, err)
 		}
 
-		v[item.Host] = item
+		v[fmt.Sprintf("%s://%s:%d", item.Protocol, item.Host, item.Port)] = item
 	}
 
 	return v, nil
